@@ -1,5 +1,5 @@
 # Cordova 
-[![Travis](https://travis-ci.org/ricardoapaes/cordova.svg?branch=master&status=started)](https://travis-ci.org/beevelop/docker-cordova)
+[![Travis](https://travis-ci.org/ricardoapaes/cordova.svg?branch=master&status=started)](https://travis-ci.org/ricardoapaes/cordova)
 
 Nesta build será possível compilar um app cordova usando o seguinte comando:
 
