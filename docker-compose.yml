@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    cordova:
+        build: .
+        command: cordova-build.sh
+        image: likesistemas/cordova:latest
+        volumes:
+            - ./apk/:/root/apk/
+            - ./www/:/root/www/
+            - ./www/config.js:/root/app/config.js
