@@ -3,19 +3,18 @@
 set -e
 
 if [ "$1" = 'all' ]; then
-	./cordova-build.sh app;
-	./cordova-build.sh app "--release";
+	fbuild.sh ${APP_NAME};
+	fbuild.sh ${APP_NAME} "--release";
 	exit 0;
 fi;
 
 if [ "$1" = 'dev' ]; then
-	./cordova-build.sh app;
-	./cordova-build.sh app "" "" "2";
+	fbuild.sh ${APP_NAME};
 	exit 0;
 fi;
 
 if [ "$1" = 'release' ]; then
-	./cordova-build.sh app "--release" "bundle";
+	fbuild.sh ${APP_NAME} "--release";
 	exit 0;
 fi;
 

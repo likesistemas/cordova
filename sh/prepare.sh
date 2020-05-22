@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ${1}
+cd "${ROOT}${1}/"
 
 WWW="./www/";
 WWW_VAZIA=false;
@@ -17,5 +17,3 @@ cordova build android --release
 if [ ${WWW_VAZIA} = true ]; then
 	rm -Rfv ${WWW}
 fi;
-
-cd ..

@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y \
 
 ENV TZ="America/Fortaleza"
 ENV ROOT="/root/"
+ENV APP_NAME="app"
+ENV ROOT_APP_NAME="${ROOT}${APP_NAME}/"
 
 VOLUME ${ROOT}www/
 VOLUME ${ROOT}apk/
@@ -14,9 +16,9 @@ VOLUME ${ROOT}apk/
 WORKDIR ${ROOT}
 
 RUN cordova telemetry on \
-	&& cordova create app
+	&& cordova create ${APP_NAME}
 
-WORKDIR "${ROOT}app/"
+WORKDIR ${ROOT_APP_NAME}
 
 RUN cordova platform add android \
  && cordova plugin add cordova-plugin-geolocation \
@@ -35,11 +37,11 @@ RUN cd nodejs/ && npm install && cd ..
 COPY sh/ /usr/local/bin/
 COPY sh/nodejs/*.js nodejs/
 
-RUN chmod +x /usr/local/bin/cordova-prepare.sh \
- && chmod +x /usr/local/bin/cordova-build.sh \
- && chmod +x /usr/local/bin/cordova-prepare.sh \
+RUN chmod +x /usr/local/bin/prepare.sh \
+ && chmod +x /usr/local/bin/build.sh \
+ && chmod +x /usr/local/bin/prepare.sh \
  && chmod +x /usr/local/bin/change-version.sh
 
 RUN rm -rf /var/lib/apt/lists/*
 
-WORKDIR "${ROOT}app/"
+WORKDIR ${ROOT_APP_NAME}

@@ -3,7 +3,7 @@ version: '3'
 services:
     cordova:
         build: .
-        command: cordova-build.sh
+        command: build.sh
         image: likesistemas/cordova:latest
         volumes:
             - ./apk/:/root/apk/
