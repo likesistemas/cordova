@@ -39,9 +39,12 @@ COPY sh/nodejs/*.js nodejs/
 
 RUN chmod +x /usr/local/bin/prepare.sh \
  && chmod +x /usr/local/bin/build.sh \
- && chmod +x /usr/local/bin/prepare.sh \
+ && chmod +x /usr/local/bin/fbuild.sh \
+ && chmod +x /usr/local/bin/entrypoint.sh \
  && chmod +x /usr/local/bin/change-version.sh
 
 RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${ROOT_APP_NAME}
+
+ENTRYPOINT [ "entrypoint.sh" ]

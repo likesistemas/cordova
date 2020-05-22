@@ -3,7 +3,7 @@ version: '3'
 services:
     cordova:
         build: .
-        entrypoint: fbuild.sh "app"
+        command: dev
         image: likesistemas/cordova:latest
         volumes:
             - ./apk/:/root/apk/
