@@ -6,17 +6,16 @@ APK_DEBUG="./platforms/android/app/build/outputs/apk/debug/app-debug.apk";
 APK_RELEASE="./platforms/android/app/build/outputs/apk/release/app-release.apk";
 AAB_DEBUG="./platforms/android/app/build/outputs/bundle/debug/app.aab";
 AAB_RELEASE="./platforms/android/app/build/outputs/bundle/release/app.aab";
-APK_NAME=${1};
 
-if [ -z "${APK_NAME}" ]; then
-	APK_NAME="app";
+if [ -n "${1}" ]; then
+	APP_NAME=${1};
 fi;
 
 if [ -n "${4}" ]; then
 	ID_APP=${4};
 fi;
 
-echo "Iniciando build '${1}'...";
+echo "Iniciando build '${APP_NAME}'...";
 
 if [ ! -d "${WWW_ORIGINAL}" ]; then
 	echo "Pasta www não existe.";
@@ -24,7 +23,7 @@ if [ ! -d "${WWW_ORIGINAL}" ]; then
 fi;
 
 echo "Copiando pasta www...";
-cp -r ${WWW_ORIGINAL} ${WWW}
+cp -r ${WWW_ORIGINAL} .
 ls -la ${WWW}
 
 echo "Copiando config.js...";
@@ -38,7 +37,7 @@ fi;
 if [ -n "$ID_APP" ]; then
 	echo "Alterando ID do App..."
    	sed -i "/^var qspClienteProprio = /s/=.*/= {id: ${ID_APP}};/" ${WWW}/config.js;
-   	APK_NAME="${APK_NAME}-proprio-${ID_APP}";
+   	APK_NAME="${APP_NAME}-proprio-${ID_APP}";
 fi;
 
 cat ${WWW}/config.js;
@@ -74,7 +73,7 @@ if [ -f "${APK_RELEASE}" ]; then
 	mv ${APK_RELEASE} ../apk/${APK_NAME}-release.apk;
 fi;
 
-if [ "${3}" = "bundle" ]; then
+if [ "${2}" = "--release" ]; then
 	cd platforms/android
 	./gradlew bundle
 	cd ..

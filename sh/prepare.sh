@@ -10,6 +10,9 @@ if [ ! -d "${WWW}" ]; then
 	WWW_VAZIA=true;
 fi;
 
+mkdir -p platforms
+
+cordova platform add android@8
 cordova prepare
 cordova build android
 cordova build android --release
