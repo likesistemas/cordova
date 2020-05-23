@@ -11,9 +11,11 @@ if [ -n "${1}" ]; then
 	APP_NAME=${1};
 fi;
 
-if [ -n "${4}" ]; then
-	ID_APP=${4};
+if [ -n "${3}" ]; then
+	ID_APP=${3};
 fi;
+
+APK_NAME=${APP_NAME}
 
 echo "Iniciando build '${APP_NAME}'...";
 

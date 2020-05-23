@@ -10,6 +10,7 @@ fi;
 
 if [ "$1" = 'dev' ]; then
 	fbuild.sh ${APP_NAME};
+	fbuild.sh ${APP_NAME} "" "2";
 	exit 0;
 fi;
 
