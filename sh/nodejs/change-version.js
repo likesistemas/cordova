@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var path = require('path');
 var fs = require('fs');
 var xml2js = require('xml2js');
 
@@ -24,9 +23,8 @@ function xmlFileToJs(filepath, cb) {
   });
 }
 
-function jsToXmlFile(filename, obj, cb) {
+function jsToXmlFile(filepath, obj, cb) {
   try {
-    var filepath = path.normalize(path.join(__dirname, filename));
     var builder = new xml2js.Builder();
     var xml = builder.buildObject(obj);  
     console.log("Salvando o novo xml...");
