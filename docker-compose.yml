@@ -8,4 +8,4 @@ services:
         volumes:
             - ./apk/:/root/apk/
             - ./www/:/root/www/
-            - ./www/config.js:/root/app/config.js
+            - ./.env-app:/root/app/.env-app

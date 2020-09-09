@@ -1,2 +1,4 @@
 #!/bin/sh
-node ${ROOT}nodejs/change-version.js "${PWD}/www/versao.js" "${PWD}/config.xml" "${2}";
+FOLDER_APP=${PWD}
+cd ..
+node ${ROOT}nodejs/change-version.js "${PWD}/www/" "${FOLDER_APP}/";

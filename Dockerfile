@@ -3,14 +3,15 @@ FROM likesistemas/cordova:stable
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
-    vim
+    vim \
+    jq \ 
+    curl
 
 ENV TZ="America/Fortaleza"
 ENV ROOT="/root/"
 ENV APP_NAME="app"
 ENV ROOT_APP_NAME="${ROOT}${APP_NAME}/"
 
-VOLUME ${ROOT}www/
 VOLUME ${ROOT}apk/
 
 WORKDIR ${ROOT}
@@ -41,7 +42,8 @@ RUN chmod +x /usr/local/bin/prepare.sh \
  && chmod +x /usr/local/bin/build.sh \
  && chmod +x /usr/local/bin/fbuild.sh \
  && chmod +x /usr/local/bin/entrypoint.sh \
- && chmod +x /usr/local/bin/change-version.sh
+ && chmod +x /usr/local/bin/change-version.sh \
+ && chmod +x /usr/local/bin/compile-webpack.sh
 
 RUN rm -rf /var/lib/apt/lists/*
 

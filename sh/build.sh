@@ -24,28 +24,23 @@ if [ ! -d "${WWW_ORIGINAL}" ]; then
 	exit 1;
 fi;
 
-echo "Copiando pasta www...";
-cp -r ${WWW_ORIGINAL} .
-ls -la ${WWW}
+compile-webpack.sh ${WWW_ORIGINAL} "${PWD}/.env-app" ${ID_APP}
 
-echo "Copiando config.js...";
-cp config.js ${WWW}
-
-if [ -n "$URL_SITE" ]; then
-	echo "Alterando URL...";
-	sed -i "/^var urlQsp = '/s/=.*/='${URL_SITE}';/" ${WWW}/config.js;
+if [ ! -d "${WWW_ORIGINAL}public/" ]; then
+	echo "Ocorreu algum problema ao compilar o projeto.";
+	exit 1;
 fi;
 
+echo "Copiando pasta www...";
+cp -r "${WWW_ORIGINAL}public/" ${WWW}
+ls -la ${WWW}
+
 if [ -n "$ID_APP" ]; then
-	echo "Alterando ID do App..."
-   	sed -i "/^var qspClienteProprio = /s/=.*/= {id: ${ID_APP}};/" ${WWW}/config.js;
    	APK_NAME="${APP_NAME}-proprio-${ID_APP}";
 fi;
 
-cat ${WWW}/config.js;
-
 echo "Alterando Versão...";
-change-version.sh ${VERSAO_APP};
+change-version.sh
 
 if [ -f "${APK_DEBUG}" ]; then
 	rm -v ${APK_DEBUG};
