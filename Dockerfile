@@ -40,7 +40,10 @@ COPY sh/nodejs/*.js nodejs/
 
 RUN chmod +x /usr/local/bin/prepare.sh \
  && chmod +x /usr/local/bin/build.sh \
+ && chmod +x /usr/local/bin/bundle.sh \
  && chmod +x /usr/local/bin/fbuild.sh \
+ && chmod +x /usr/local/bin/release.sh \
+ && chmod +x /usr/local/bin/frelease.sh \
  && chmod +x /usr/local/bin/entrypoint.sh \
  && chmod +x /usr/local/bin/change-version.sh \
  && chmod +x /usr/local/bin/compile-webpack.sh

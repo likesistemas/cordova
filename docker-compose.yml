@@ -3,8 +3,8 @@ version: '3'
 services:
     cordova:
         build: .
-        command: dev
-        image: likesistemas/cordova:latest
+        command: all
+        image: likesistemas/cordova:dev
         volumes:
             - ./apk/:/root/apk/
             - ./www/:/root/www/

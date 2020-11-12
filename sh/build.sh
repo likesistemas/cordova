@@ -2,10 +2,9 @@
 
 WWW_ORIGINAL="../www/";
 WWW="./www/";
-APK_DEBUG="./platforms/android/app/build/outputs/apk/debug/app-debug.apk";
-APK_RELEASE="./platforms/android/app/build/outputs/apk/release/app-release.apk";
-AAB_DEBUG="./platforms/android/app/build/outputs/bundle/debug/app.aab";
-AAB_RELEASE="./platforms/android/app/build/outputs/bundle/release/app.aab";
+APK_DEBUG="./platforms/android/app/build/outputs/apk/debug/";
+APK_RELEASE="./platforms/android/app/build/outputs/apk/release/";
+APK_FOLDER="${ROOT}apk/";
 
 if [ -n "${1}" ]; then
 	APP_NAME=${1};
@@ -42,47 +41,28 @@ fi;
 echo "Alterando Versão...";
 change-version.sh
 
-if [ -f "${APK_DEBUG}" ]; then
-	rm -v ${APK_DEBUG};
+if [ -d "${APK_DEBUG}" ]; then
+	rm -Rfv ${APK_DEBUG};
 fi;
 
-if [ -f "${APK_RELEASE}" ]; then
-	rm -v ${APK_RELEASE};
-fi;
-
-if [ -f "${AAB_DEBUG}" ]; then
-	rm -v ${AAB_DEBUG};
-fi;
-
-if [ -f "${AAB_RELEASE}" ]; then
-	rm -v ${AAB_RELEASE};
+if [ -d "${APK_RELEASE}" ]; then
+	rm -Rfv ${APK_RELEASE};
 fi;
 
 cordova build android ${2}
 
-if [ -f "${APK_DEBUG}" ]; then
+if [ -d "${APK_DEBUG}" ]; then
 	echo "Copiando APK Debug...";
-	mv ${APK_DEBUG} ../apk/${APK_NAME}-debug.apk;
+	SRC_APK_DEBUG=$(find ${APK_DEBUG} -regex ".*\.\(apk\)")
+	mv ${SRC_APK_DEBUG} ${APK_FOLDER}${APK_NAME}-debug.apk;
 fi;
 
-if [ -f "${APK_RELEASE}" ]; then
+if [ -d "${APK_RELEASE}" ]; then
 	echo "Copiando APK Release...";
-	mv ${APK_RELEASE} ../apk/${APK_NAME}-release.apk;
+	SRC_APK_RELEASE=$(find ${APK_RELEASE} -regex ".*\.\(apk\)")
+	mv ${SRC_APK_RELEASE} ${APK_FOLDER}${APK_NAME}-release.apk;
 fi;
 
 if [ "${2}" = "--release" ]; then
-	cd platforms/android
-	./gradlew bundle
-	cd ..
-	cd ..
-
-	if [ -f "${AAB_DEBUG}" ]; then
-		echo "Copiando AAB Debug...";
-		mv ${AAB_DEBUG} ../apk/${APK_NAME}-debug.aab
-	fi;
-
-	if [ -f "${AAB_RELEASE}" ]; then
-		echo "Copiando AAB Release...";
-		mv ${AAB_RELEASE} ../apk/${APK_NAME}-release.aab
-	fi;	
+	bundle.sh ${APK_NAME} ${APK_FOLDER}
 fi;

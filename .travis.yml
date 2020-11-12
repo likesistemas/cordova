@@ -4,4 +4,36 @@ services:
   - docker
 
 script:
-  - docker-compose up
+  - |
+    docker-compose up --build
+    
+    APK_DEBUG="./apk/app-debug.apk";
+    APK_DEBUG_PROPRIO="./apk/app-proprio-2-debug";
+    APK_RELEASE="./apk/app-release.apk";
+    AAB_DEBUG="./apk/app-debug.aab";
+    AAB_RELEASE="./apk/app-release.aab";
+
+    if [ ! -f "${APK_DEBUG}" ]; then
+      echo "Not exists debug apk"
+      exit 1;
+    fi;
+
+    if [ ! -f "${APK_DEBUG_PROPRIO}" ]; then
+      echo "Not exists debug proprio apk"
+      exit 1;
+    fi;
+
+    if [ ! -f "${APK_RELEASE}" ]; then
+      echo "Not exists release apk"
+      exit 1;
+    fi;
+
+    if [ ! -f "${AAB_DEBUG}" ]; then
+      echo "Not exists debug aab"
+      exit 1;
+    fi;
+
+    if [ ! -f "${AAB_RELEASE}" ]; then
+      echo "Not exists release aab"
+      exit 1;
+    fi;
