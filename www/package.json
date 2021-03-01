@@ -2,6 +2,6 @@
   "name": "app",
   "version": "1.0.0",
   "scripts": {
-    "build:prd": "rm -Rf public/ && mkdir -p public/ && cp index.html public/index.html"
+    "build:cordova": "rm -Rf www/ && mkdir -p www/ && cp index.html www/index.html"
   }
 }

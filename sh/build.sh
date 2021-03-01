@@ -25,13 +25,13 @@ fi;
 
 compile-webpack.sh ${WWW_ORIGINAL} "${PWD}/.env-app" ${ID_APP}
 
-if [ ! -d "${WWW_ORIGINAL}public/" ]; then
+if [ ! -d "${WWW_ORIGINAL}${BUILD_FOLDER}/" ]; then
 	echo "Ocorreu algum problema ao compilar o projeto.";
 	exit 1;
 fi;
 
 echo "Copiando pasta www...";
-cp -r "${WWW_ORIGINAL}public/" ${WWW}
+cp -r "${WWW_ORIGINAL}${BUILD_FOLDER}/" ${WWW}
 ls -la ${WWW}
 
 if [ -n "$ID_APP" ]; then

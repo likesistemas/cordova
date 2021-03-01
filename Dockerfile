@@ -11,6 +11,8 @@ ENV TZ="America/Fortaleza"
 ENV ROOT="/root/"
 ENV APP_NAME="app"
 ENV ROOT_APP_NAME="${ROOT}${APP_NAME}/"
+ENV WEBPACK_BUILD_COMMAND="build:cordova"
+ENV BUILD_FOLDER="www"
 
 VOLUME ${ROOT}apk/
 
@@ -21,7 +23,25 @@ RUN cordova telemetry on \
 
 WORKDIR ${ROOT_APP_NAME}
 
-RUN cordova platform add android \
+RUN apt-get update && apt-get install -y curl gnupg2 lsb-release && \
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
+    apt-key fingerprint 1655A0AB68576280 && \
+    export VERSION=node_14.x && \
+    export DISTRO="$(lsb_release -s -c)" && \
+    echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list && \
+    echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list && \
+    apt-get update && apt-get install -y nodejs && \
+    node -v && npm -v && \
+    npm install -g yarn && \
+    yarn -v && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN npm install -g npm@latest
+RUN npm install -g cordova@latest
+RUN node -v && npm -v && cordova -v
+
+RUN cordova platform add android@latest \
  && cordova plugin add cordova-plugin-geolocation \
  && cordova plugin add cordova-plugin-whitelist \
  && cordova plugin add cordova-android-support-gradle-release

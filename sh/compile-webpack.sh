@@ -31,6 +31,6 @@ echo "\n---\n"
 
 echo "Build..."
 ls -la
-npm run build:prd
+npm run ${WEBPACK_BUILD_COMMAND}
 
 rm ${ENV_PRD}
