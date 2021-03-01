@@ -31,13 +31,10 @@ jobs:
           AAB_DEBUG="./apk/app-debug.aab";
           AAB_RELEASE="./apk/app-release.aab";
 
+          ls -la ./apk/
+
           if [ ! -f "${APK_DEBUG}" ]; then
             echo "Not exists debug apk"
-            exit 1;
-          fi;
-
-          if [ ! -f "${APK_DEBUG_PROPRIO}" ]; then
-            echo "Not exists debug proprio apk"
             exit 1;
           fi;
 

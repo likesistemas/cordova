@@ -40,6 +40,7 @@ RUN apt-get update && apt-get install -y curl gnupg2 lsb-release && \
 RUN npm install -g npm@latest
 RUN npm install -g cordova@latest
 RUN node -v && npm -v && cordova -v
+RUN apt-get update && apt-get install build-essential -y --no-install-recommends
 
 RUN cordova platform add android@latest \
  && cordova plugin add cordova-plugin-geolocation \
