@@ -2,9 +2,8 @@
   "name": "app",
   "version": "1.0.0",
   "scripts": {
-    "prebuild:cordova": "npm run clean:cordova",
-    "build:cordova": "webpack --config webpack.config.js",
-    "clean:cordova": "rimraf www"
+    "prebuild:cordova": "rimraf www",
+    "build:cordova": "webpack --config webpack.config.js"
   },
   "devDependencies": {
     "html-webpack-plugin": "^5.2.0",

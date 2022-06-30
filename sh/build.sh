@@ -25,10 +25,9 @@ fi;
 
 compile-webpack.sh ${WWW_ORIGINAL} "${PWD}/.env-app" ${ID_APP}
 
-if [ ! -d "${WWW_ORIGINAL}${BUILD_FOLDER}/" ]; then
-	echo "Ocorreu algum problema ao compilar o projeto.";
+if [ $? -ne 0 ]; then
 	exit 1;
-fi;
+fi
 
 echo "Copiando pasta www...";
 cp -r "${WWW_ORIGINAL}${BUILD_FOLDER}/" ${WWW}
