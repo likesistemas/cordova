@@ -29,6 +29,9 @@ if [ $? -ne 0 ]; then
 	exit 1;
 fi
 
+echo "Apagando pasta www...";
+rm -Rf ${WWW}
+
 echo "Copiando pasta www...";
 cp -r "${WWW_ORIGINAL}${BUILD_FOLDER}/" ${WWW}
 ls -la ${WWW}
