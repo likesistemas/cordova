@@ -6,7 +6,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
 
 RUN apt-get install -y nodejs && \
-    node -v && npm -v &&;
+    node -v && npm -v
 
 RUN npm install -g yarn && \
     yarn -v
