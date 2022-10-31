@@ -55,7 +55,6 @@ WORKDIR ${ROOT_APP_NAME}
 
 RUN cordova platform add android@latest \
  && cordova plugin add cordova-plugin-geolocation \
- && cordova plugin add cordova-plugin-whitelist \
  && cordova plugin add cordova-plugin-camera \
  && cordova plugin add cordova-android-support-gradle-release
 
