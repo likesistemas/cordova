@@ -1,7 +1,8 @@
 FROM beevelop/android:latest as android-nodejs
 
-RUN apt-get update && apt-get install -y curl gnupg2 lsb-release && \
-    curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
+RUN apt-get update && apt-get install -y curl gnupg2 lsb-release
+
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
 
 RUN apt-get install -y nodejs && \
