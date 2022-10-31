@@ -34,8 +34,6 @@ VOLUME ${ROOT}apk/
 
 WORKDIR ${ROOT}
 
-WORKDIR ${ROOT_APP_NAME}
-
 RUN npm install -g npm@latest
 RUN npm install -g cordova@latest
 RUN node -v && npm -v && cordova -v
@@ -44,9 +42,12 @@ RUN apt-get update && apt-get install build-essential -y --no-install-recommends
 RUN cordova telemetry on \
 	&& cordova create ${APP_NAME}
 
+WORKDIR ${ROOT_APP_NAME}
+
 RUN cordova platform add android@latest \
  && cordova plugin add cordova-plugin-geolocation \
  && cordova plugin add cordova-plugin-whitelist \
+ && cordova plugin add cordova-plugin-camera \
  && cordova plugin add cordova-android-support-gradle-release
 
 RUN cordova build android
