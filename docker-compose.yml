@@ -9,3 +9,13 @@ services:
             - ./apk/:/root/apk/
             - ./www/:/root/www/
             - ./.env-app:/root/app/.env-app
+    
+    debug:
+        build: .
+        image: likesistemas/cordova:dev
+        working_dir: /root/
+        command: bash
+        volumes:
+            - ./www/:/root/www/
+        stdin_open: true
+        tty: true
