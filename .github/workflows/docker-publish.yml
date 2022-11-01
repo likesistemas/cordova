@@ -26,7 +26,6 @@ jobs:
           sleep 60
 
           APK_DEBUG="./apk/app-debug.apk";
-          APK_DEBUG_PROPRIO="./apk/app-proprio-2-debug";
           APK_RELEASE="./apk/app-release.apk";
           AAB_DEBUG="./apk/app-debug.aab";
           AAB_RELEASE="./apk/app-release.aab";
